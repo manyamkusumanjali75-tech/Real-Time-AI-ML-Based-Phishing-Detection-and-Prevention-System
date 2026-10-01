@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI/ML Phishing Detection System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+    rgba(4,8,25,0.88),
+    rgba(4,8,25,0.92)),
+    url('{{ url_for("static", filename="inp3.jpg") }}');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    color:white;
+
+    padding:40px 20px;
+}
+
+.container{
+
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+}
+
+.header{
+
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+
+    font-size:3rem;
+    font-weight:700;
+
+    background:
+    linear-gradient(
+    90deg,
+    #00e5ff,
+    #00ff95);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    margin-bottom:15px;
+}
+
+.header p{
+
+    font-size:18px;
+    color:#d6d6d6;
+}
+
+.line{
+
+    width:220px;
+    height:4px;
+
+    margin:20px auto;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #00e5ff,
+    #00ff95);
+}
+
+.card{
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    margin-bottom:30px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.35);
+
+    transition:0.4s ease;
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 15px 40px rgba(0,229,255,0.20);
+}
+
+.card h2{
+
+    color:#00e5ff;
+
+    margin-bottom:25px;
+
+    font-size:2rem;
+}
+
+.card p{
+
+    line-height:1.9;
+    font-size:17px;
+    text-align:justify;
+}
+
+ol,
+ul{
+
+    padding-left:25px;
+}
+
+li{
+
+    margin:12px 0;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+.workflow{
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(0,229,255,0.12),
+    rgba(0,255,149,0.12));
+
+    border:1px solid rgba(0,229,255,0.25);
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(350px,1fr));
+
+    gap:25px;
+}
+
+.feature-card{
+
+    background:rgba(255,255,255,0.06);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,0.10);
+
+    transition:0.4s;
+}
+
+.feature-card:hover{
+
+    transform:scale(1.03);
+
+    box-shadow:
+    0 10px 25px rgba(0,229,255,0.15);
+}
+
+.feature-card h3{
+
+    color:#00ff95;
+
+    margin-bottom:15px;
+}
+
+.btn{
+
+    display:inline-block;
+
+    margin-top:35px;
+
+    padding:16px 40px;
+
+    text-decoration:none;
+
+    border:none;
+
+    border-radius:50px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:white;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+    135deg,
+    #00e5ff,
+    #0066ff);
+
+    box-shadow:
+    0 8px 25px rgba(0,229,255,0.35);
+
+    transition:0.4s;
+}
+
+.btn:hover{
+
+    transform:translateY(-5px);
+
+    background:
+    linear-gradient(
+    135deg,
+    #00ff95,
+    #00e5ff);
+
+    box-shadow:
+    0 15px 35px rgba(0,255,149,0.35);
+}
+
+.center{
+    text-align:center;
+}
+
+.footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    color:#cfcfcf;
+
+    font-size:15px;
+}
+
+@media(max-width:768px){
+
+.header h1{
+    font-size:2rem;
+}
+
+.card h2{
+    font-size:1.5rem;
+}
+
+li{
+    font-size:16px;
+}
+
+.card{
+    padding:25px;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>
+            🛡️ Real-Time AI/ML-Based Phishing Detection & Prevention System
+        </h1>
+
+        <div class="line"></div>
+
+        <p>
+            Intelligent Cybersecurity Solution for Detecting Phishing Websites,
+            Malicious URLs and Online Threats in Real Time
+        </p>
+
+    </div>
+
+    <!-- Threats Section -->
+
+    <div class="card">
+
+        <h2>🎯 Major Phishing Threats</h2>
+
+        <ol>
+
+            <li>🎣 Phishing Websites attempting to steal user information.</li>
+
+            <li>💀 Malicious Links redirecting users to harmful websites.</li>
+
+            <li>🔒 Credential Theft through fake login pages.</li>
+
+            <li>🌐 Spoofed Domains imitating trusted websites.</li>
+
+            <li>🎭 Social Engineering attacks targeting users.</li>
+
+            <li>⚠️ Zero-Day Threats exploiting unknown vulnerabilities.</li>
+
+            <li>📡 Man-In-The-Middle (MITM) attacks.</li>
+
+            <li>💻 Malware Distribution via suspicious URLs.</li>
+
+            <li>🔑 Identity Theft and confidential data leakage.</li>
+
+            <li>🕵️ Cyber Fraud leading to financial loss.</li>
+
+        </ol>
+
+    </div>
+
+    <!-- Workflow -->
+
+    <div class="card workflow">
+
+        <h2>🚀 AI/ML Detection Workflow</h2>
+
+        <ul>
+
+            <li>📝 Step 1 – User enters website URL.</li>
+
+            <li>🔍 Step 2 – Protocol extraction and URL parsing.</li>
+
+            <li>🔐 Step 3 – Safe protocol verification.</li>
+
+            <li>✅ Supported Protocols: HTTP, HTTPS, FTP, SFTP.</li>
+
+            <li>⚠️ Unsafe Protocols: File, JavaScript, Data, Unknown.</li>
+
+            <li>⚙️ Step 4 – AI/ML feature extraction and analysis.</li>
+
+            <li>📊 Step 5 – Threat score and phishing prediction.</li>
+
+            <li>🛡️ Step 6 – Security recommendations generated.</li>
+
+            <li>💾 Step 7 – Result stored in database.</li>
+
+            <li>📜 Step 8 – History and reporting dashboard.</li>
+
+        </ul>
+
+    </div>
+
+    <!-- Information Grid -->
+
+    <div class="grid">
+
+        <div class="feature-card">
+
+            <h3>📌 Introduction</h3>
+
+            <p>
+                The Real-Time AI/ML-Based Phishing Detection and Prevention
+                System is designed to identify suspicious websites before
+                users become victims of cyber attacks. By leveraging machine
+                learning algorithms, the system performs intelligent URL
+                analysis and provides real-time threat predictions.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>⚡ Advantages</h3>
+
+            <ul>
+
+                <li>Real-time phishing detection.</li>
+
+                <li>High prediction accuracy.</li>
+
+                <li>Automatic threat analysis.</li>
+
+                <li>Scalable for large datasets.</li>
+
+                <li>Adaptive machine learning.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>⚠️ Challenges</h3>
+
+            <ul>
+
+                <li>Imbalanced datasets.</li>
+
+                <li>Rapidly evolving phishing attacks.</li>
+
+                <li>Computational overhead.</li>
+
+                <li>Privacy and security concerns.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>📈 System Benefits</h3>
+
+            <ul>
+
+                <li>Improves user awareness.</li>
+
+                <li>Reduces cyber fraud.</li>
+
+                <li>Enhances online safety.</li>
+
+                <li>Supports proactive defense.</li>
+
+                <li>Provides instant warnings.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- Conclusion -->
+
+    <div class="card">
+
+        <h2>📌 Conclusion</h2>
+
+        <p>
+            This project demonstrates how Artificial Intelligence and
+            Machine Learning techniques can effectively detect phishing
+            websites in real time. The proposed solution enhances
+            cybersecurity by providing accurate threat predictions,
+            prevention recommendations, and continuous monitoring for
+            safer internet usage.
+        </p>
+
+        <div class="center">
+
+            <button class="btn"
+            onclick="location.href='/'">
+
+                🏠 Return Home
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+
+        © 2026 AI/ML Phishing Detection & Prevention System |
+        Cybersecurity Research Project
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

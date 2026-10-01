@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Detection Result</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    rgba(2,6,23,0.92),
+    rgba(15,23,42,0.95)),
+    url('{{ url_for("static",filename="inp2.jpg") }}');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    overflow:auto;
+    padding:30px;
+}
+
+.result-card{
+
+    width:95%;
+    max-width:750px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.45);
+}
+
+.header{
+
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+
+    font-size:2.5rem;
+
+    background:
+    linear-gradient(
+    90deg,
+    #00e5ff,
+    #00ff95);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    margin-bottom:10px;
+}
+
+.header p{
+
+    color:#d7d7d7;
+}
+
+.info-box{
+
+    background:rgba(255,255,255,0.05);
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+}
+
+.info-box p{
+
+    margin:10px 0;
+
+    color:#f1f5f9;
+
+    word-break:break-word;
+}
+
+.result-status{
+
+    text-align:center;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin:20px 0;
+
+    font-size:24px;
+
+    font-weight:700;
+}
+
+.safe{
+
+    background:
+    rgba(34,197,94,0.15);
+
+    border:1px solid rgba(34,197,94,0.4);
+
+    color:#22c55e;
+
+    box-shadow:
+    0 0 20px rgba(34,197,94,0.2);
+}
+
+.harm{
+
+    background:
+    rgba(239,68,68,0.15);
+
+    border:1px solid rgba(239,68,68,0.4);
+
+    color:#ef4444;
+
+    box-shadow:
+    0 0 20px rgba(239,68,68,0.2);
+}
+
+.risk-section{
+
+    margin-top:25px;
+}
+
+.risk-header{
+
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    color:white;
+}
+
+.bar{
+
+    width:100%;
+    height:20px;
+
+    background:#334155;
+
+    border-radius:50px;
+
+    overflow:hidden;
+}
+
+.fill{
+
+    height:100%;
+
+    width:0%;
+
+    border-radius:50px;
+
+    transition:2s ease;
+}
+
+.safe-fill{
+
+    background:
+    linear-gradient(
+    90deg,
+    #22c55e,
+    #00ff95);
+}
+
+.harm-fill{
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff4b4b,
+    #ff1744);
+}
+
+.warning-box{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,193,7,0.12);
+
+    border:1px solid rgba(255,193,7,0.3);
+}
+
+.warning-box h3{
+
+    color:#facc15;
+
+    margin-bottom:12px;
+}
+
+.warning-box p{
+
+    color:#f1f5f9;
+
+    line-height:1.8;
+}
+
+.buttons{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:15px;
+
+    margin-top:30px;
+}
+
+.btn{
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:50px;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.4s;
+}
+
+.btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 12px 30px rgba(255,255,255,0.15);
+}
+
+.retry{
+
+    background:
+    linear-gradient(
+    135deg,
+    #00ff95,
+    #00c853);
+}
+
+.history{
+
+    background:
+    linear-gradient(
+    135deg,
+    #00e5ff,
+    #0066ff);
+}
+
+.visual{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff9800,
+    #ff5722);
+}
+
+.footer{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    color:#cbd5e1;
+
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+.result-card{
+    padding:25px;
+}
+
+.header h1{
+    font-size:1.8rem;
+}
+
+.result-status{
+    font-size:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<div class="header">
+
+<h1>
+🔍 Detection Result
+</h1>
+
+<p>
+AI/ML-Based Phishing Detection Analysis Report
+</p>
+
+</div>
+
+<div class="info-box">
+
+<p>
+🌐 <b>URL:</b><br>
+{{ url }}
+</p>
+
+<p>
+🔒 <b>Protocol:</b>
+{{ protocol }}
+</p>
+
+</div>
+
+<div class="result-status {% if prediction == 'Harmful link' %}harm{% else %}safe{% endif %}">
+
+{% if prediction == 'Harmful link' %}
+🚨 Harmful Link Detected
+{% else %}
+✅ Safe Link Detected
+{% endif %}
+
+</div>
+
+<div class="risk-section">
+
+<div class="risk-header">
+
+<span>Risk Analysis</span>
+
+<span>
+{{ risk_percentage }}%
+</span>
+
+</div>
+
+<div class="bar">
+
+<div
+id="riskFill"
+class="fill {% if prediction == 'Harmful link' %}harm-fill{% else %}safe-fill{% endif %}">
+</div>
+
+</div>
+
+</div>
+
+<div class="warning-box" {% if prediction != 'Harmful link' %}style="border-color: rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.1);"{% endif %}>
+
+<h3>
+{% if prediction == 'Harmful link' %}⚠️ Security Warning{% else %}✅ Security Status{% endif %}
+</h3>
+
+<p>
+ℹ️ {{ suggestion1 }}
+</p>
+
+<p>
+🛡️ {{ suggestion2 }}
+</p>
+
+<p>
+📊 Risk Level:
+<b>{{ risk_level }}</b>
+</p>
+
+</div>
+
+<div class="buttons">
+
+<button
+class="btn retry"
+onclick="location.href='/detect'">
+
+🔄 Detect Another URL
+
+</button>
+
+<button
+class="btn history"
+onclick="location.href='/previous-results'">
+
+📜 View History
+
+</button>
+
+<button
+class="btn visual"
+onclick="location.href='/visualization'">
+
+📊 Analytics
+
+</button>
+
+<button
+class="btn home"
+onclick="location.href='/'"
+style="background: linear-gradient(135deg, #a855f7, #6366f1);">
+
+🏠 Home
+
+</button>
+
+</div>
+
+<div class="footer">
+
+Powered by Artificial Intelligence & Machine Learning
+for Advanced Cybersecurity Protection
+
+</div>
+
+</div>
+
+<script>
+
+window.onload=function(){
+
+let percent={{ risk_percentage|default(0) }};
+
+setTimeout(()=>{
+
+document.getElementById("riskFill").style.width=
+percent + "%";
+
+},300);
+
+let prediction="{{ prediction }}";
+
+setTimeout(()=>{
+
+if(prediction==="Harmful link"){
+
+alert("🚨 Warning! Harmful Link Detected.");
+
+}
+else{
+
+alert("✅ Safe Link Verified.");
+
+}
+
+},500);
+
+}
+
+</script>
+
+</body>
+</html>

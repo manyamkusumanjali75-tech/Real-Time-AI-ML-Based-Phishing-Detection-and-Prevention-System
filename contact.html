@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Details</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    rgba(5,10,30,0.88),
+    rgba(5,10,30,0.92)),
+    url('{{ url_for("static",filename="inp1.jpg") }}');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.container{
+
+    width:95%;
+    max-width:950px;
+}
+
+.card{
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:30px;
+
+    padding:50px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.45);
+}
+
+.title{
+
+    text-align:center;
+
+    font-size:3rem;
+
+    font-weight:700;
+
+    background:
+    linear-gradient(
+    90deg,
+    #00e5ff,
+    #00ff95);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    margin-bottom:15px;
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#d5d5d5;
+
+    font-size:18px;
+
+    margin-bottom:40px;
+}
+
+.line{
+
+    width:220px;
+    height:4px;
+
+    margin:20px auto 40px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #00e5ff,
+    #00ff95);
+}
+
+.info{
+
+    display:flex;
+    align-items:center;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
+
+    background:rgba(255,255,255,0.06);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:.4s;
+}
+
+.info:hover{
+
+    transform:translateY(-5px);
+
+    background:rgba(255,255,255,0.10);
+
+    box-shadow:
+    0 12px 25px rgba(0,229,255,0.15);
+}
+
+.icon{
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:32px;
+
+    margin-right:25px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #00e5ff,
+    #0066ff);
+
+    color:white;
+
+    box-shadow:
+    0 0 25px rgba(0,229,255,0.35);
+}
+
+.details h3{
+
+    color:#00ff95;
+
+    margin-bottom:8px;
+
+    font-size:20px;
+}
+
+.details p{
+
+    color:#ffffff;
+
+    font-size:18px;
+}
+
+.buttons{
+
+    margin-top:40px;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+}
+
+.btn{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:16px 35px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.4s;
+
+    font-size:17px;
+}
+
+.home{
+
+    background:
+    linear-gradient(
+    135deg,
+    #00e5ff,
+    #0066ff);
+}
+
+.call{
+
+    background:
+    linear-gradient(
+    135deg,
+    #00ff95,
+    #00c853);
+}
+
+.mail{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4b8a,
+    #ff1744);
+}
+
+.btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 12px 30px rgba(255,255,255,0.2);
+}
+
+.footer{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    color:#d0d0d0;
+
+    font-size:16px;
+
+    border-top:1px solid rgba(255,255,255,0.1);
+
+    padding-top:20px;
+}
+
+.footer span{
+
+    color:#00e5ff;
+    font-weight:600;
+}
+
+@media(max-width:768px){
+
+.card{
+    padding:30px;
+}
+
+.title{
+    font-size:2rem;
+}
+
+.info{
+
+    flex-direction:column;
+
+    text-align:center;
+}
+
+.icon{
+
+    margin-right:0;
+
+    margin-bottom:15px;
+}
+
+.details p{
+
+    font-size:16px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1 class="title">
+📞 Contact Details
+</h1>
+
+<p class="subtitle">
+Real-Time AI/ML-Based Phishing Detection & Prevention System
+</p>
+
+<div class="line"></div>
+
+<div class="info">
+
+<div class="icon">
+👨‍🎓
+</div>
+
+<div class="details">
+
+<h3>Student Name</h3>
+
+<p>SACET STUDENT</p>
+
+</div>
+
+</div>
+
+<div class="info">
+
+<div class="icon">
+📱
+</div>
+
+<div class="details">
+
+<h3>Phone Number</h3>
+
+<p>+91 93456 78190</p>
+
+</div>
+
+</div>
+
+<div class="info">
+
+<div class="icon">
+📧
+</div>
+
+<div class="details">
+
+<h3>Email Address</h3>
+
+<p>student@gmail.com</p>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<a href="/" class="btn home">
+🏠 Return Home
+</a>
+
+<a href="tel:+919345678190" class="btn call">
+📞 Call Now
+</a>
+
+<a href="mailto:sacetstudent@gmail.com" class="btn mail">
+✉️ Send Email
+</a>
+
+</div>
+
+<div class="footer">
+
+🛡️ Powered by
+<span>Artificial Intelligence & Machine Learning</span>
+for Advanced Cybersecurity Protection
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
